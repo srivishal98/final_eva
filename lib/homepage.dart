@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'common_widgets/custom_widget.dart';
 import 'common_widgets/large_text.dart';
+import 'common_widgets/row1.dart';
+import 'common_widgets/row2.dart';
 import 'common_widgets/smalltext.dart';
 import 'constant/constant.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -164,7 +166,8 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image(
-                          image: AssetImage("assets/icon/icon1.png"),
+                          image: AssetImage("assets/icon/icon1.png",
+                          ),
                           height: 30 ,
                           width: 30,),
 
@@ -443,6 +446,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 5,),
                     Container(
                       padding: EdgeInsets.only(top: 20,bottom: 20,right: 15,left: 15),
                       height: 439,
@@ -456,42 +460,56 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       child:  Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  LargeBoldText(text: "Deposit"),
-                                  LargeText(text: "AED 3,944,880")
-                                ],
-                      ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  LargeText(text: "-"),
-                                  Container(
-                                    height: 25 ,
-                                    width: 44,
-                                    color: red,
-                                    child: Center(
-                                      child: Text(
-                                        "24%",
-                                        style: TextStyle(
-                                          color: Colors.white
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Divider(),
-                                ],
-
-                              )
-
+                            row1(title1: 'Deposit', title2: 'AED 3,944,880',),
+                            row2(t1: '-', t2: '24%',),
+                            row1(title1: '1st Installment', title2: 'AED 575,295',),
+                            row2(t1: 'Within 3 Month(s) Of Sale Date', t2: '3.5%',),
+                            row1(title1: '2nd Installment', title2: 'AED 3,944,880',),
+                            row2(t1: 'Within 6 Month(s) Of Sale Date', t2: '3.5%',),
+                            row1(title1: 'nd Installment', title2: 'AED 3,944,880',),
+                            row2(t1: 'Within 9 Month(s) Of Sale Date', t2: '3.5%',),
+                            row1(title1: '4nd Installment', title2: 'AED 3,944,880',),
+                            row2(t1: 'Within 12 Month(s) Of Sale Date', t2: '3.5%',)
                           ]
                       ),
                     ),
+                    SizedBox(height: 20,),
+                    Container(
+                      height: 55,
+                      width: 398,
+                      decoration: BoxDecoration(
+                        color : bg,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            width: 2,
+                            color: border
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius :  BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomRight: Radius.circular(10)
+                              ),
+                              color: red,
+                            ),
+                            height: 30,
+                            width: 5,
+                          ),
+                          SizedBox(width: 10),
+                          LargeBoldText(text: "Amenities & Facilities"),
 
+
+
+
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
