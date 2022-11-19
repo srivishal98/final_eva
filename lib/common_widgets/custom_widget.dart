@@ -18,7 +18,11 @@ class customWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: rec_color,
+        color: bg,
+        border: Border.all(
+            width: 2,
+            color: border
+        ),
       ),
       //  foregroundDecoration: ,
       height: 128,

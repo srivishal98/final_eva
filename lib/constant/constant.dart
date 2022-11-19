@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 const grey = Color(0xFF767676);
 const rec_color = Color(0xFFE6EFF8);
 const black = Colors.black;
-const bg = Color(0xFFE6EFF8);
+const border = Color(0xFFE6EFF8);
+const bg = Color(0xFFF8FAFC);
+
 const red = Colors.red;
 
 List<String> images = [

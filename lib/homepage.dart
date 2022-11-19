@@ -1,3 +1,4 @@
+import 'package:final_eva/common_widgets/largebold.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'common_widgets/custom_widget.dart';
@@ -263,6 +264,10 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         color : bg,
                         borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            width: 2,
+                            color: border
+                        ),
                       ),
                      child:  Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -342,6 +347,10 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         color : bg,
                         borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            width: 2,
+                            color: border
+                        ),
                       ),
                       child:  Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -398,11 +407,91 @@ class _HomePageState extends State<HomePage> {
                               Expanded(
                                   child: SmallText(text: 'These charges are approximate values. It may be subject to change by the authorities.',)),
                             ],
-                          )
-
+                          ),
                         ],
                       ),
+
                     ),
+                    SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Payment Plan",
+                          style: TextStyle(
+                              fontFamily: "Quicksand",
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold
+                          ),),
+                        SizedBox(
+                          child: Row(
+                            children:[
+                          Icon(Icons.arrow_forward,
+                          color: red,),
+                          InkWell(
+                            child: Text("View All",
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontFamily: "Quicksand",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+
+                              ),),
+                            onTap: () => launchUrl(url),
+                          ),
+                          ]
+                          )
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 20,bottom: 20,right: 15,left: 15),
+                      height: 439,
+                      width: 398,
+                      decoration: BoxDecoration(
+                        color : bg,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            width: 2,
+                            color: border
+                        ),
+                      ),
+                      child:  Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  LargeBoldText(text: "Deposit"),
+                                  LargeText(text: "AED 3,944,880")
+                                ],
+                      ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  LargeText(text: "-"),
+                                  Container(
+                                    height: 25 ,
+                                    width: 44,
+                                    color: red,
+                                    child: Center(
+                                      child: Text(
+                                        "24%",
+                                        style: TextStyle(
+                                          color: Colors.white
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Divider(),
+                                ],
+
+                              )
+
+                          ]
+                      ),
+                    ),
+
                   ],
                 ),
               ),
