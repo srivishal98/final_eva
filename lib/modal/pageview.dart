@@ -5,13 +5,24 @@ class Pages extends StatelessWidget {
   Pages({this.images});
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:<Widget>[
-             Image(image: AssetImage(images)),
+    return Expanded(
+      flex: 2,
 
-          ]
+      child: Container(
+
+        decoration: BoxDecoration(
+
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+    image: DecorationImage(
+
+    image: AssetImage(
+    images),
+    fit: BoxFit.fill),
+
+
+
+      ),
       ),
     );
   }
