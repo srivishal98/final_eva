@@ -8,6 +8,7 @@ import 'common_widgets/row2.dart';
 import 'common_widgets/smalltext.dart';
 import 'constant/constant.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'modal/pageview.dart';
 
 
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     "assets/3.png",
     "assets/4.png",
   ];
-
+ //String videoId;
 
 
   @override
@@ -477,39 +478,138 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(height: 20,),
-                    Container(
-                      height: 55,
-                      width: 398,
-                      decoration: BoxDecoration(
-                        color : bg,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            width: 2,
-                            color: border
+                    GestureDetector(
+                      child: Container(
+                        height: 55,
+                        width: 398,
+                        decoration: BoxDecoration(
+                          color : bg,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              width: 2,
+                              color: border
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius :  BorderRadius.only(
+                                  topRight: Radius.circular(10),
+                                  bottomRight: Radius.circular(10)
+                                ),
+                                color: red,
+                              ),
+                              height: 30,
+                              width: 5,
+                            ),
+                            SizedBox(width: 10),
+                            LargeBoldText(text: "Amenities & Facilities"),
+                            SizedBox(width:200),
+                            Icon(Icons.keyboard_arrow_down,
+                                 size: 20,)
+
+
+
+                          ],
                         ),
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius :  BorderRadius.only(
-                                topRight: Radius.circular(10),
-                                bottomRight: Radius.circular(10)
-                              ),
-                              color: red,
-                            ),
-                            height: 30,
-                            width: 5,
+                      onTap:  () => launchUrl(url),
+                    ),
+                    SizedBox(height: 20,),
+                    GestureDetector(
+                      child: Container(
+                        height: 55,
+                        width: 398,
+                        decoration: BoxDecoration(
+                          color : bg,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              width: 2,
+                              color: border
                           ),
-                          SizedBox(width: 10),
-                          LargeBoldText(text: "Amenities & Facilities"),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius :  BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    bottomRight: Radius.circular(10)
+                                ),
+                                color: red,
+                              ),
+                              height: 30,
+                              width: 5,
+                            ),
+                            SizedBox(width: 10),
+                            LargeBoldText(text: "Floor Plans"),
+                            SizedBox(width:265),
+                            Icon(Icons.keyboard_arrow_down,
+                              size: 20,),
 
 
 
 
-                        ],
+                          ],
+                        ),
                       ),
-                    )
+                      onTap:  () => launchUrl(url),
+                    ),
+                    SizedBox(height: 20,),
+                    GestureDetector(
+                      child: Container(
+                        height: 55,
+                        width: 398,
+                        decoration: BoxDecoration(
+                          color : bg,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              width: 2,
+                              color: border
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius :  BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    bottomRight: Radius.circular(10)
+                                ),
+                                color: red,
+                              ),
+                              height: 30,
+                              width: 5,
+                            ),
+                            SizedBox(width: 10),
+                            LargeBoldText(text: "Project Location"),
+                            SizedBox(width:230),
+                            Icon(Icons.keyboard_arrow_down,
+                              size: 20,),
+
+
+
+
+                          ],
+                        ),
+
+                      ),
+                      onTap: () => launchUrl(url),
+                    ),
+                    SizedBox(height: 20,),
+                    Text("SKYZ by Danube Video Tour",
+                      style: TextStyle(
+                          fontFamily: "Quicksand",
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold
+                      ),),
+                    SizedBox(height: 20,),
+                  Container(
+
+                  )
+               // videoId = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=BBAyRBTfsOU");
+               //  print(videoId);
                   ],
                 ),
               ),
