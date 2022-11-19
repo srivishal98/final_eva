@@ -8,7 +8,7 @@ import 'common_widgets/row2.dart';
 import 'common_widgets/smalltext.dart';
 import 'constant/constant.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+//import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'modal/pageview.dart';
 
 
