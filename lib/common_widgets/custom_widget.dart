@@ -15,59 +15,62 @@ class customWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: bg,
-        border: Border.all(
-            width: 2,
-            color: border
-        ),
-      ),
-      //  foregroundDecoration: ,
-      height: 128,
-      width: 125,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(image!,
-          height: 30 ,
-          width: 30,),
-          RichText(
-            text : TextSpan(
-              children: <TextSpan>[
-                TextSpan(text: no,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Quicksand",
-                    fontSize: 18,
-                    color: black,
-                  ),
-                ),
-
-                TextSpan( text : title,
-                  style: TextStyle(
-                    fontFamily: "Quicksand",
-                    fontSize: 18,
-                    color: black,
-                  ),
-                ),
-
-              ],
-            ),
+    return Expanded(
+      child: Container(
+        height: MediaQuery.of(context).size.height * .16,
+        width: MediaQuery.of(context).size.width * .30,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: bg,
+          border: Border.all(
+              width: 2,
+              color: border
           ),
-          Text(des!,
-            style: TextStyle(
-                fontFamily: "Quicksand",
-                fontSize: 18,
-             //   fontWeight: FontWeight.bold
-            ),),
+        ),
+        //  foregroundDecoration: ,
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(image!,
+            height: 30 ,
+            width: 30,),
+            RichText(
+              text : TextSpan(
+                children: <TextSpan>[
+                  TextSpan(text: no,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Quicksand",
+                      fontSize: 18,
+                      color: black,
+                    ),
+                  ),
+
+                  TextSpan( text : title,
+                    style: TextStyle(
+                      fontFamily: "Quicksand",
+                      fontSize: 18,
+                      color: black,
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+            Text(des!,
+              style: TextStyle(
+                  fontFamily: "Quicksand",
+                  fontSize: 18,
+               //   fontWeight: FontWeight.bold
+              ),),
 
 
-        ],
+          ],
+
+        ),
 
       ),
-
     );
   }
 }

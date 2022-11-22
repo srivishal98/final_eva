@@ -10,7 +10,7 @@ class LargeBoldText extends StatelessWidget {
     return Text(text!,
       style: TextStyle(
         fontFamily: "Quicksand",
-        fontSize: 16,
+        fontSize: 14,
          fontWeight: FontWeight.bold
       ),);
   }
