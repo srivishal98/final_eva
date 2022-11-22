@@ -1,6 +1,6 @@
 import 'package:final_eva/splash/splash.dart';
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+import 'views/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //theme: ThemeData(fontFamily: 'Quicksand'),
-      home: HomePage(),
+      home: Splash(),
     );
   }
 }

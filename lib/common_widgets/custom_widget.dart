@@ -16,6 +16,9 @@ class customWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // height: MediaQuery.of(context).size.height * 0.14,
+      // width: MediaQuery.of(context).size.width * 0.30,
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: bg,
@@ -25,14 +28,14 @@ class customWidget extends StatelessWidget {
         ),
       ),
       //  foregroundDecoration: ,
-      height: 128,
-      width: 125,
+
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
           Image.asset(image!,
-          height: 30 ,
-          width: 30,),
+          height: MediaQuery.of(context).size.height* 0.07 ,
+          width: MediaQuery.of(context).size.width* 0.07 ,),
           RichText(
             text : TextSpan(
               children: <TextSpan>[
@@ -40,7 +43,7 @@ class customWidget extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: "Quicksand",
-                    fontSize: 18,
+                    fontSize: 16,
                     color: black,
                   ),
                 ),
@@ -48,7 +51,7 @@ class customWidget extends StatelessWidget {
                 TextSpan( text : title,
                   style: TextStyle(
                     fontFamily: "Quicksand",
-                    fontSize: 18,
+                    fontSize: 16,
                     color: black,
                   ),
                 ),
@@ -59,7 +62,7 @@ class customWidget extends StatelessWidget {
           Text(des!,
             style: TextStyle(
                 fontFamily: "Quicksand",
-                fontSize: 18,
+                fontSize: 16,
              //   fontWeight: FontWeight.bold
             ),),
 

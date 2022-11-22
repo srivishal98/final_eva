@@ -1,15 +1,20 @@
 import 'package:final_eva/common_widgets/largebold.dart';
+import 'package:final_eva/common_widgets/row_column.dart';
+import 'package:final_eva/views/gmap.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'common_widgets/custom_widget.dart';
-import 'common_widgets/large_text.dart';
-import 'common_widgets/row1.dart';
-import 'common_widgets/row2.dart';
-import 'common_widgets/smalltext.dart';
-import 'constant/constant.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../common_widgets/box.dart';
+import '../common_widgets/custom_widget.dart';
+import '../common_widgets/large_text.dart';
+import '../common_widgets/row1.dart';
+import '../common_widgets/row2.dart';
+import '../common_widgets/smalltext.dart';
+import '../constant/constant.dart';
 import 'package:url_launcher/url_launcher.dart';
-//import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-import 'modal/pageview.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../modal/pageview.dart';
 
 
 
@@ -24,14 +29,31 @@ class _HomePageState extends State<HomePage> {
 
 
 
+
  final List<String> images = [
     "assets/1.png",
     "assets/2.png",
     "assets/3.png",
     "assets/4.png",
   ];
- //String videoId;
+ late YoutubePlayerController _controller;
 
+
+
+
+  @override
+  void initState(){
+      _controller = YoutubePlayerController(
+    initialVideoId: 'Vbwz-Zlw4fc',
+    flags: YoutubePlayerFlags(
+      autoPlay: true,
+      loop : true,
+        forceHD: true,
+      // mute: true,
+    ),
+  );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +63,8 @@ class _HomePageState extends State<HomePage> {
 
           children: [
             Container(
-              height: 300,
-
+              height: MediaQuery.of(context).size.height * 0.30,
+              width: MediaQuery.of(context).size.width ,
               // color: Colors.red,
               child: CarouselSlider(
 
@@ -65,8 +87,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-
-              margin: EdgeInsets.only(left: 20,right: 20,top: 320),
+              margin: EdgeInsets.only(left: 20,right: 20,top: 250),
                 child: Column(
                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,17 +142,20 @@ class _HomePageState extends State<HomePage> {
                     Text("Discover \"SKYZ by Danube\" Living",
                       style: TextStyle(
                           fontFamily: "Quicksand",
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold
                       ),),
                     SizedBox(height: 15,),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        customWidget(image: "assets/icon/icon_bed.png", title: ' BedRoom', no: '1',des: "",),
-                        customWidget(image: "assets/icon/icon_area.png", title: ' Sft', no: '3964.67 ',des: "(Area)",),
-                        customWidget(image:"assets/icon/icon_sq_area.png", title: ' Sft', no: '1437.74',des: "(Plot Area)",),
-                      ],
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children : [
+                    GestureDetector(child: customWidget(image: "assets/icon/icon_bed.png", title: ' BedRoom', no: '1',des: "",),
+                      onTap: () => launchUrl(url),),
+                    GestureDetector(child: customWidget(image: "assets/icon/icon_area.png", title: ' Sft', no: '3964.67 ',des: "(Area)",),
+                      onTap: () => launchUrl(url),),
+                    GestureDetector(child: customWidget(image:"assets/icon/icon_sq_area.png", title: ' Sft', no: '1437.74',des: "(Plot Area)",),
+                      onTap: () => launchUrl(url),),
+                        ],
                     ),
                     SizedBox(height: 10,),
                     Text("This unique residential project located in Arjan close to Miracle Garden, adjacent to the heavily travelled Sheikh Mohammed Bin Zayed road making it conven...,",
@@ -150,109 +174,118 @@ class _HomePageState extends State<HomePage> {
                         ),),
                         onTap: () => launchUrl(url),
                     ),
-              SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     SizedBox(height: 15,),
+                   FittedBox(
+                     child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(25),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: black,
-                    ),
-                    //  foregroundDecoration: ,
-                    height: 128,
-                    width: 125,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image(
-                          image: AssetImage("assets/icon/icon1.png",
-                          ),
-                          height: 30 ,
-                          width: 30,),
-
-                        Text("Mortage Calculator",
-                          style: TextStyle(
-                            fontFamily: "Quicksand",
-                            fontSize: 18,
-                            color: Colors.white
-                            //   fontWeight: FontWeight.bold
-                          ),),
-
-
-                      ],
-
-                    ),
-
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(25),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      border: Border.all(
-                        width: 2,
-                        color: red
+                       GestureDetector(
+                         child: Container(
+                      padding: EdgeInsets.all(25),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: black,
                       ),
+                      //  foregroundDecoration: ,
+                      height: MediaQuery.of(context).size.height* .15,
+                      width: MediaQuery.of(context).size.width* .30,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: AssetImage("assets/icon/icon1.png",
+                              ),
+                              height: 30 ,
+                              width: 30,),
 
-                    ),
-                    //  foregroundDecoration: ,
-                    height: 128,
-                    width: 125,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image(
-                          image: AssetImage("assets/icon/icon1.png"),
-                          height: 30 ,
-                          width: 30,),
-
-                        Text("Broucher",
-                          style: TextStyle(
-                              fontFamily: "Quicksand",
-                              fontSize: 18,
-                              color: red
-                            //   fontWeight: FontWeight.bold
-                          ),),
-
-
-                      ],
-
-                    ),
-
+                            Text("Mortage ",
+                              style: TextStyle(
+                                fontFamily: "Quicksand",
+                                fontSize: 13,
+                                color: Colors.white
+                                //   fontWeight: FontWeight.bold
+                              ),),
+                          ],
+                      ),
                   ),
-                  Container(
-                    padding: EdgeInsets.all(25),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: red,
-                    ),
-                    //  foregroundDecoration: ,
-                    height: 128,
-                    width: 125,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image(
-                          image: AssetImage("assets/icon/icon1.png"),
-                          height: 30 ,
-                          width: 30,),
+                         onTap: () => launchUrl(url),
+                       ),
+                     SizedBox(width: 10,),
+                  GestureDetector(
+                      child: Container(
+                        padding: EdgeInsets.all(25),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          border: Border.all(
+                            width: 2,
+                            color: red
+                          ),
 
-                        Text("Sale Offer",
-                          style: TextStyle(
-                              fontFamily: "Quicksand",
-                              fontSize: 18,
-                              color: Colors.white
-                            //   fontWeight: FontWeight.bold
-                          ),),
-                      ],
+                        ),
+                        //  foregroundDecoration: ,
+                        height:  MediaQuery.of(context).size.height* .15  ,
+                        width: MediaQuery.of(context).size.width* .30,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: AssetImage("assets/icon/icon1.png"),
+                              height: 30,
+                              width: 30),
 
-                    ),
+                            Text("Broucher",
+                              style: TextStyle(
+                                  fontFamily: "Quicksand",
+                                  fontSize: 13,
+                                  color: red
+                                //   fontWeight: FontWeight.bold
+                              ),),
 
+
+                          ],
+
+                        ),
+
+                      ),
+                      onTap: () => launchUrl(url),
+                  ),
+                  SizedBox(width: 10,),
+                  GestureDetector(
+                      child: Container(
+                        padding: EdgeInsets.all(25),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: red,
+                        ),
+                        //  foregroundDecoration: ,
+                        height: MediaQuery.of(context).size.height* .15,
+                        width: MediaQuery.of(context).size.width* .30,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: AssetImage("assets/icon/icon1.png"),
+                              height: 30 ,
+                              width: 30,),
+
+                            Text("Sale Offer",
+                              style: TextStyle(
+                                  fontFamily: "Quicksand",
+                                  fontSize: 13,
+                                  color: Colors.white
+                                //   fontWeight: FontWeight.bold
+                              ),),
+                          ],
+
+                        ),
+
+                      ),
+                      onTap: () => launchUrl(url),
                   ),
                 ],
               ),
+                   ),
                     SizedBox(height: 10,),
                     Text("Property Details",
                       style: TextStyle(
@@ -262,74 +295,88 @@ class _HomePageState extends State<HomePage> {
                       ),),
                     SizedBox(height: 10,),
                     Container(
-                      padding: EdgeInsets.only(top: 20,bottom: 20,right: 15,left: 15),
-                      height: 268,
-                      width: 398,
+
+                      padding: EdgeInsets.only(top: 20,bottom: 20,right: 20,left: 20),
+                      height: MediaQuery.of(context).size.height* 0.35,
+                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color : bg,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(16),
                         border: Border.all(
                             width: 2,
                             color: border
                         ),
                       ),
-                     child:  Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                     child:
+                     // Column(
+                     //      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     //
+                     //  children: [
+                     //    rowColumn(title1: "Product Name", desc1: "Cavalli Tower", title2: 'Property Name', desc2: 'Cavalli Casa Tower',),
+                     //    rowColumn(title1: "Property Status", desc1: "Off-Plan", title2: 'Anticipated Complete Date', desc2: '10 Oct 2022',),
+                     //    rowColumn(title1: "Gross Price", desc1: "AED 16,437,000", title2: 'VAT', desc2: '10 Oct 2022',),
+                     //    rowColumn(title1: "Net Price", desc1: "AED 16,437,000", title2: 'Permitted use', desc2: 'Residential Apartments',),
+                     //  ],
+                     // ),
+                     Column(
+
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: [
                          Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SmallText(text: 'Product Name',),
                               SmallText(text: 'Property Name',),
                             ],
                           ),
                          Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              LargeText(text: 'Cavalli Tower',),
                              LargeText(text: 'Cavalli Casa Tower'),
                            ],
                          ),
                          Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              SmallText(text: 'Property Status',),
                              SmallText(text: 'Anticipated Complete Date',),
                            ],
                          ),
                          Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              LargeText(text: 'Off-Plan',),
                              LargeText(text: '10 Oct 2022'),
                            ],
                          ),
                          Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              SmallText(text: 'Gross Price',),
                              SmallText(text: 'VAT',),
                            ],
                          ),
                          Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              LargeText(text: 'AED 16,437,000',),
                              LargeText(text: '10 Oct 2022'),
                            ],
                          ),
                          Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              SmallText(text: 'Net Price',),
                              SmallText(text: 'Permitted use',),
                            ],
                          ),
                          Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
-                             LargeText(text: '10 Oct 2022',),
+                             LargeText(text: 'AED 16,437,000',),
                              LargeText(text: 'Residential Apartments'),
                            ],
                          ),
@@ -346,8 +393,8 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 20,),
                     Container(
                       padding: EdgeInsets.only(top: 20,bottom: 20,right: 15,left: 15),
-                      height: 268,
-                      width: 398,
+                      height: MediaQuery.of(context).size.height * 0.35,
+                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color : bg,
                         borderRadius: BorderRadius.circular(10),
@@ -361,21 +408,21 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SmallText(text: 'Title Deed (A)',),
                               SmallText(text: 'Land Registration Fee (B)',),
                             ],
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               LargeText(text: 'AED 540',),
                               LargeText(text: 'AED 657,480'),
                             ],
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SmallText(text: 'OQOOD Fee(C)',),
                               SmallText(text: 'DSR Fees(D)',),
@@ -383,7 +430,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               LargeText(text: 'AED 1,000',),
                               LargeText(text: 'AED 1,000'),
@@ -450,14 +497,14 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 5,),
                     Container(
                       padding: EdgeInsets.only(top: 20,bottom: 20,right: 15,left: 15),
-                      height: 439,
-                      width: 398,
+                      height: MediaQuery.of(context).size.height * 0.50,
+                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color : bg,
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                             width: 2,
-                            color: border
+                            color: border,
                         ),
                       ),
                       child:  Column(
@@ -466,12 +513,16 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             row1(title1: 'Deposit', title2: 'AED 3,944,880',),
                             row2(t1: '-', t2: '24%',),
+                            Divider(),
                             row1(title1: '1st Installment', title2: 'AED 575,295',),
                             row2(t1: 'Within 3 Month(s) Of Sale Date', t2: '3.5%',),
+                            Divider(),
                             row1(title1: '2nd Installment', title2: 'AED 3,944,880',),
                             row2(t1: 'Within 6 Month(s) Of Sale Date', t2: '3.5%',),
-                            row1(title1: 'nd Installment', title2: 'AED 3,944,880',),
+                            Divider(),
+                            row1(title1: '3rd Installment', title2: 'AED 3,944,880',),
                             row2(t1: 'Within 9 Month(s) Of Sale Date', t2: '3.5%',),
+                            Divider(),
                             row1(title1: '4nd Installment', title2: 'AED 3,944,880',),
                             row2(t1: 'Within 12 Month(s) Of Sale Date', t2: '3.5%',)
                           ]
@@ -480,8 +531,6 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 20,),
                     GestureDetector(
                       child: Container(
-                        height: 55,
-                        width: 398,
                         decoration: BoxDecoration(
                           color : bg,
                           borderRadius: BorderRadius.circular(10),
@@ -490,113 +539,107 @@ class _HomePageState extends State<HomePage> {
                               color: border
                           ),
                         ),
-                        child: Row(
-                          children: [
+                        // color: red,
+                        child: ExpansionTile(
+                          title: LargeBoldText( text: "Amenities & Facilities"),
+                          children: <Widget>[
                             Container(
                               decoration: BoxDecoration(
-                                borderRadius :  BorderRadius.only(
-                                  topRight: Radius.circular(10),
-                                  bottomRight: Radius.circular(10)
-                                ),
-                                color: red,
-                              ),
-                              height: 30,
-                              width: 5,
-                            ),
-                            SizedBox(width: 10),
-                            LargeBoldText(text: "Amenities & Facilities"),
-                            SizedBox(width:200),
-                            Icon(Icons.keyboard_arrow_down,
-                                 size: 20,)
+                               // color: red,
+                                borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10),
 
+                                ),
+                              ),
+                              height: MediaQuery.of(context).size.height* .18,
+                              child:  Wrap(
+                                spacing: 4,
+                                runSpacing: 60,
+                                children : [
+                                  box(icons: "assets/icon/icon_bed.png", title: 'Party Hall',),
+                                  box(icons: "assets/icon/icon_bed.png", title: 'Fitness',),
+                                  box(icons: "assets/icon/icon_bed.png", title: 'Market',),
+                                  box(icons: "assets/icon/icon_bed.png", title: 'Security',),
+                                  box(icons: "assets/icon/icon_bed.png", title: 'Kids Play',),
+                                  box(icons: "assets/icon/icon_bed.png", title: 'Parking',),
+                                  box(icons: "assets/icon/icon_bed.png", title: 'Generator',),
+                                ],
+                              ),
+                            ),
 
 
                           ],
                         ),
-                      ),
-                      onTap:  () => launchUrl(url),
-                    ),
-                    SizedBox(height: 20,),
-                    GestureDetector(
-                      child: Container(
-                        height: 55,
-                        width: 398,
-                        decoration: BoxDecoration(
-                          color : bg,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              width: 2,
-                              color: border
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius :  BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomRight: Radius.circular(10)
-                                ),
-                                color: red,
-                              ),
-                              height: 30,
-                              width: 5,
-                            ),
-                            SizedBox(width: 10),
-                            LargeBoldText(text: "Floor Plans"),
-                            SizedBox(width:265),
-                            Icon(Icons.keyboard_arrow_down,
-                              size: 20,),
-
-
-
-
-                          ],
-                        ),
-                      ),
-                      onTap:  () => launchUrl(url),
-                    ),
-                    SizedBox(height: 20,),
-                    GestureDetector(
-                      child: Container(
-                        height: 55,
-                        width: 398,
-                        decoration: BoxDecoration(
-                          color : bg,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              width: 2,
-                              color: border
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius :  BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomRight: Radius.circular(10)
-                                ),
-                                color: red,
-                              ),
-                              height: 30,
-                              width: 5,
-                            ),
-                            SizedBox(width: 10),
-                            LargeBoldText(text: "Project Location"),
-                            SizedBox(width:230),
-                            Icon(Icons.keyboard_arrow_down,
-                              size: 20,),
-
-
-
-
-                          ],
-                        ),
-
                       ),
                       onTap: () => launchUrl(url),
                     ),
+                    SizedBox(height: 20,),
+                    GestureDetector(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color : bg,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              width: 2,
+                              color: border
+                          ),
+                        ),
+                        // color: red,
+                        child: ExpansionTile(
+                          title: LargeBoldText( text: "Floor Plans"),
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                // color: red,
+                                borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10),
+
+                                ),
+                              ),
+                              height: MediaQuery.of(context).size.height* 0.20,
+                            ),
+                          ],
+                        ),
+                      ),
+                      //onTap: () => launchUrl(url),
+                    ),
+                    SizedBox(height: 20,),
+                    GestureDetector(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color : bg,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              width: 2,
+                              color: border
+                          ),
+                        ),
+                        // color: red,
+                        child: ExpansionTile(
+                          title: LargeBoldText( text: "Project Location"),
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                // color: red,
+                                borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(20),
+                                  bottomLeft: Radius.circular(20),
+
+                                ),
+                              ),
+                              height: MediaQuery.of(context).size.height* 0.30,
+                              child: Container(
+
+                                  child: GMap( )),
+                            ),
+                          ],
+                        ),
+                      ),
+                      //onTap: () => launchUrl(url),
+                    ),
+
                     SizedBox(height: 20,),
                     Text("SKYZ by Danube Video Tour",
                       style: TextStyle(
@@ -605,11 +648,13 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.bold
                       ),),
                     SizedBox(height: 20,),
-                  Container(
+                    YoutubePlayer(
+                      controller: _controller,
 
-                  )
-               // videoId = YoutubePlayer.convertUrlToId("https://www.youtube.com/watch?v=BBAyRBTfsOU");
-               //  print(videoId);
+                    // onReady: ,
+                    //  showVideoProgressIndicator: true,
+                    ),
+                    SizedBox(height: 20),
                   ],
                 ),
               ),
