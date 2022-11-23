@@ -10,10 +10,13 @@ class row2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      // mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        SizedBox(width: 5,),
         LargeText(text: t1),
+        Spacer(),
         Container(
          // margin: EdgeInsets.only(left: 50),
           height: 25 ,
@@ -29,6 +32,7 @@ class row2 extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(width: 5,),
         Divider(),
       ],
 

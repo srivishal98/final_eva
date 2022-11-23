@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class SmallText extends StatelessWidget {
   String? text;
- SmallText({required this.text});
+  TextAlign? align;
+ SmallText({required this.text,this.align});
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,8 @@ class SmallText extends StatelessWidget {
           fontFamily: "Quicksand",
           fontSize: 12,
           fontWeight: FontWeight.bold
-      ),);
+      ),
+    textAlign: align,
+    );
   }
 }

@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                     .map(
                       (item) => Center(
                     child: Image.asset(item,
-                      fit: BoxFit.fitHeight,
+                      fit: BoxFit.fill,
                       width: double.infinity,
                       height: double.infinity,
 
@@ -292,7 +292,9 @@ class _HomePageState extends State<HomePage> {
                           fontFamily: "Quicksand",
                           fontSize: 18,
                           fontWeight: FontWeight.bold
-                      ),),
+                      ),
+
+                    ),
                     SizedBox(height: 10,),
                     Container(
 
@@ -327,57 +329,65 @@ class _HomePageState extends State<HomePage> {
                          Row(
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SmallText(text: 'Product Name',),
-                              SmallText(text: 'Property Name',),
+                              SmallText(text: 'Product Name', ),
+                              SizedBox(width: 100,),
+                              Expanded(child: SmallText(text: 'Property Name',align: TextAlign.left,)),
                             ],
                           ),
                          Row(
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              LargeText(text: 'Cavalli Tower',),
-                             LargeText(text: 'Cavalli Casa Tower'),
+                             SizedBox(width: 95,),
+                             Expanded(child: LargeText(text: 'Cavalli Casa Tower')),
                            ],
                          ),
                          Row(
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              SmallText(text: 'Property Status',),
-                             SmallText(text: 'Anticipated Complete Date',),
+                             SizedBox(width: 95,),
+                             Expanded(child: SmallText(text: 'Anticipated Complete Date',)),
                            ],
                          ),
                          Row(
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              LargeText(text: 'Off-Plan',),
-                             LargeText(text: '10 Oct 2022'),
+                             SizedBox(width: 125,),
+                             Expanded(child: LargeText(text: '10 Oct 2022')),
                            ],
                          ),
                          Row(
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              SmallText(text: 'Gross Price',),
-                             SmallText(text: 'VAT',),
+                             SizedBox(width: 115,),
+                             Expanded(child: SmallText(text: 'VAT',)),
                            ],
                          ),
                          Row(
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              LargeText(text: 'AED 16,437,000',),
-                             LargeText(text: '10 Oct 2022'),
+                             SizedBox(width: 90,),
+                             Expanded(child: LargeText(text: '10 Oct 2022')),
                            ],
                          ),
                          Row(
                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              SmallText(text: 'Net Price',),
-                             SmallText(text: 'Permitted use',),
+                             SizedBox(width: 125,),
+                             Expanded(child: SmallText(text: 'Permitted use',)),
                            ],
                          ),
                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              LargeText(text: 'AED 16,437,000',),
-                             LargeText(text: 'Residential Apartments'),
+                             SizedBox(width: 90,),
+                             Expanded(child: LargeText(text: 'Residential Apartments')),
                            ],
                          ),
                        ],
@@ -496,7 +506,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(height: 5,),
                     Container(
-                      padding: EdgeInsets.only(top: 20,bottom: 20,right: 15,left: 15),
+                      padding: EdgeInsets.only(top: 20,bottom: 20,left: 10,right: 10),
                       height: MediaQuery.of(context).size.height * 0.50,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -552,10 +562,11 @@ class _HomePageState extends State<HomePage> {
 
                                 ),
                               ),
-                              height: MediaQuery.of(context).size.height* .18,
+                              height: MediaQuery.of(context).size.height* 0.20,
                               child:  Wrap(
-                                spacing: 4,
-                                runSpacing: 60,
+                               // direction: Axis.horizontal,
+                                   spacing: 4,
+                                runSpacing: 30,
                                 children : [
                                   box(icons: "assets/icon/icon_bed.png", title: 'Party Hall',),
                                   box(icons: "assets/icon/icon_bed.png", title: 'Fitness',),

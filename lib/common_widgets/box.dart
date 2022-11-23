@@ -14,7 +14,7 @@ class box extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(3),
-      height: MediaQuery.of(context).size.height * .50,
+      //height: MediaQuery.of(context).size.height * .50,
       width: 80,
       child: Column(
         children: [
