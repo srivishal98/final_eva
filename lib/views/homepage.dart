@@ -105,8 +105,8 @@ class _HomePageState extends State<HomePage> {
                       children: [
                          Image(
                              image: AssetImage("assets/icon/icon1.png"),
-                           width: 20,
-                           height: 20,
+                           width: MediaQuery.of(context).size.width /20,
+                           height: MediaQuery.of(context).size.height /30,
                          ),
                         SizedBox(width: 5,),
                         Text("Residential Apartments",
@@ -120,8 +120,8 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(10.0),
                             color: grey,
                           ),
-                          height: 10,
-                          width: 10,
+                          width: MediaQuery.of(context).size.width /50,
+                          height: MediaQuery.of(context).size.height /87,
                         ),
                         SizedBox(width: 5,),
                         Text("Premium Sea View",
@@ -421,21 +421,24 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SmallText(text: 'Title Deed (A)',),
-                              SmallText(text: 'Land Registration Fee (B)',),
+                              SizedBox(width: 110,),
+                              Expanded(child: SmallText(text: 'Land Registration Fee (B)',)),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               LargeText(text: 'AED 540',),
-                              LargeText(text: 'AED 657,480'),
+                              SizedBox(width: 130,),
+                              Expanded(child: LargeText(text: 'AED 657,480')),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SmallText(text: 'OQOOD Fee(C)',),
-                              SmallText(text: 'DSR Fees(D)',),
+                              SizedBox(width: 105,),
+                              Expanded(child: SmallText(text: 'DSR Fees(D)',)),
                               SmallText(text: 'Other Fee(E)',),
                             ],
                           ),
@@ -443,8 +446,10 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               LargeText(text: 'AED 1,000',),
-                              LargeText(text: 'AED 1,000'),
-                              LargeText(text: 'NA'),
+                              SizedBox(width: 123,),
+                              Expanded(child: LargeText(text: 'AED 1,000')),
+                              SizedBox(width: 50,),
+                              Expanded(child: LargeText(text: 'NA')),
                             ],
                           ),
                           Divider(),
@@ -629,6 +634,10 @@ class _HomePageState extends State<HomePage> {
                         ),
                         // color: red,
                         child: ExpansionTile(
+                          leading: Divider(
+                            color: red,
+                          thickness: 2,
+                          ),
                           title: LargeBoldText( text: "Project Location"),
                           children: <Widget>[
                             Container(
@@ -669,11 +678,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-
-
-
-          ],
-
+            ],
         ),
       ),
     );
